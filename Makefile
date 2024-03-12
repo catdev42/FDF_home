@@ -6,7 +6,7 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:27:14 by myakoven          #+#    #+#              #
-#    Updated: 2024/02/23 12:57:11 by myakoven         ###   ########.fr        #
+#    Updated: 2024/03/13 00:28:39 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ MLXDIR = ./MLX42
 #------------------------------------------------#
 
 HEADERS 	:= -I . -I $(LIBDIR)/include
-SRC     	:= main.c
+SRC     	:= ./play_files/testwindowsize.c
 OBJS     	= $(SRC:.c=.o)
 
 CC      	:= cc
@@ -44,13 +44,13 @@ libft:
 	make -C $(LIBDIR)
 
 libmlx: | $(MLX_DIR)
-	@cmake $(MLXDIR) -B $(MLXDIR)/build && make -C $(MLXDIR)/build -j4
+	cmake $(MLXDIR) -B $(MLXDIR)/build && make -C $(MLXDIR)/build -j4
 	
 $(MLX_DIR):
 	git clone https://github.com/codam-coding-college/MLX42.git;
 
 
-$(NAME): libft libMLX $(OBJS)
+$(NAME): libft libmlx $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX42) $(HEADERS) -o $(NAME)
 
 cleanmlx:
