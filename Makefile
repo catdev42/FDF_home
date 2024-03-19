@@ -6,7 +6,7 @@
 #    By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/17 15:27:14 by myakoven          #+#    #+#              #
-#    Updated: 2024/03/13 00:28:39 by myakoven         ###   ########.fr        #
+#    Updated: 2024/03/13 21:05:29 by myakoven         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,9 @@ all: $(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-libft:
+$(LIBFT):
 	make -C $(LIBDIR)
+	make -C $(LIBDIR) clean 
 
 libmlx: | $(MLX_DIR)
 	cmake $(MLXDIR) -B $(MLXDIR)/build && make -C $(MLXDIR)/build -j4
@@ -50,7 +51,7 @@ $(MLX_DIR):
 	git clone https://github.com/codam-coding-college/MLX42.git;
 
 
-$(NAME): libft libmlx $(OBJS)
+$(NAME): $(LIBFT) libmlx $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX42) $(HEADERS) -o $(NAME)
 
 cleanmlx:
@@ -59,7 +60,7 @@ cleanmlx:
 clean:
 	rm -f $(OBJS)
 	cd $(LIBDIR) && make clean
-	rm -f $(OBJSBONUS)
+# rm -f $(OBJSBONUS)
 
 fclean: clean
 	rm -f $(NAME)

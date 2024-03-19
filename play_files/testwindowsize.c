@@ -6,7 +6,7 @@
 /*   By: myakoven <myakoven@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:00:31 by myakoven          #+#    #+#             */
-/*   Updated: 2024/03/13 00:33:17 by myakoven         ###   ########.fr       */
+/*   Updated: 2024/03/17 00:51:46 by myakoven         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int32_t	main(void)
 	// MLX allows you to define its core behaviour before startup.
 	mlx_set_setting(MLX_MAXIMIZED, true);
 	mlx_t* mlx = mlx_init(WIDTH, HEIGHT, "42Balls", true);
+	
 	if (!mlx)
 		ft_error();
 
